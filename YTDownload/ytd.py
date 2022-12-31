@@ -3,6 +3,7 @@ from tkinter.filedialog import asksaveasfile
 from tkinter.filedialog import asksaveasfilename
 import customtkinter as ctk
 from pytube import YouTube
+import os
 
 
 class YTVideoDownloadFrame(ctk.CTkFrame):
@@ -53,13 +54,11 @@ class YTVideoDownloadFrame(ctk.CTkFrame):
         self.textbox = ctk.CTkTextbox(master=mas, width=250)
         self.textbox.grid(row=3, column=1, rowspan=3, columnspan=3, padx=10, pady=10, sticky="nsew")
 
-        # self.textbox.insert("0.0", "CTkTextbox\n\n" + "Title - YT Video Title\n" + "Views - 3B")
-
 
     def showDetails(self):
         if(self.checkAvailability()):
             print("Showing the details in the textbox")
-            self.textbox.insert("0.0", f"Title - {self.ytObject.title}\nViews - {self.ytObject.views}\nDescription - {self.ytObject.description}\n\n\n")
+            self.textbox.insert("0.0", f"Title - {self.ytObject.title}\nPublish Date - {self.ytObject.publish_date}\nViews - {self.ytObject.views}\nDescription - {self.ytObject.description}\n\n\n")
 
 
     def download(self):
@@ -68,17 +67,19 @@ class YTVideoDownloadFrame(ctk.CTkFrame):
 
             print(f"Downloading the corresponding {self.downloadTypeMenuOption.get().lower()} file")
             
-            self.filePath = asksaveasfilename(filetypes=[("MP3 Files", "*.mp3")])
-            print(self.filePath)
+            self.filePath = asksaveasfilename(filetypes=[("MP3 File", "*.mp3")])
+            self.splitPath = os.path.split(self.filePath)
+
+            self.textbox.insert("0.0", "Initializing Download...\nThis window may not respond for a while\nPlease be patient\n\n\n")
 
             if self.downloadTypeMenuOption.get().lower() == "video":
                 self.ytVideo = self.ytObject.streams.get_highest_resolution()
-                self.ytVideo.download(self.filePath)
+                self.ytVideo.download(self.splitPath[0], self.splitPath[1]+".mp3")
             else:
                 self.ytAudio = self.ytObject.streams.get_audio_only()
-                self.ytAudio.download(self.filePath)
+                self.ytAudio.download(self.splitPath[0], self.splitPath[1]+".mp3")
 
-            self.textbox.insert("0.0", "DONWLOAD SUCCESSFULL!!\n\n\n")
+            self.textbox.insert("0.0", "Download Successful!!\n\n\n")
                 
 
     def checkAvailability(self):
@@ -86,7 +87,7 @@ class YTVideoDownloadFrame(ctk.CTkFrame):
             self.ytObject = YouTube(self.urlEntry.get())
             return True
         except:
-            self.textbox.insert("0.0", "Error:404 URL Not Found\nKindly Re-Check your URL and try again\n\n\n")
+            self.textbox.insert("0.0", "Error:404 URL not found\nKindly re-check your URL and try again\n\n\n")
             return False
 
 

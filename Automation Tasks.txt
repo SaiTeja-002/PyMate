@@ -6,3 +6,4 @@
 6. Voice Recorder
 7. GMail Analyzer
 8. Price Alert
+9. PDF Merger
