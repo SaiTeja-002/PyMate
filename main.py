@@ -75,7 +75,7 @@ class App(ctk.CTk):
         self.zoomOptionMenu.grid(row=3, column=1, sticky="w", padx=(100, 0), pady=(10, 10))
         self.zoomOptionMenu.set("100%")
 
-        self.tabView.set("YT Video Download")
+        self.tabView.set("Text To Speech")
 
         
         # Color Theme Label
