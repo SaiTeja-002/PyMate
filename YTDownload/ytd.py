@@ -87,7 +87,5 @@ class YTVideoDownloadFrame(ctk.CTkFrame):
             self.ytObject = YouTube(self.urlEntry.get())
             return True
         except:
-            self.textbox.insert("0.0", "Error:404 URL not found\nKindly re-check your URL and try again\n\n\n")
+            self.textbox.insert("0.0", "URL not found\nKindly re-check your URL and try again\n\n\n")
             return False
-
-

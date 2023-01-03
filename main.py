@@ -14,16 +14,6 @@ ctk.set_default_color_theme("green")
 
 appWidth, appHeight = 900, 700
 
-# app = ctk.CTk()
-# app.geometry(f"{appWidth}x{appHeight}")
-# app.title("PyMate")
-#
-# frame_1 = ctk.CTkFrame(master=app)
-# frame_1.pack(pady=20, padx=60, fill="both", expand=True)
-#
-# label_1 = ctk.CTkLabel(master=frame_1, justify=tkinter.LEFT)
-# label_1.pack(pady=10, padx=10)
-
 
 class App(ctk.CTk):
     def __init__(self):
@@ -37,18 +27,11 @@ class App(ctk.CTk):
         self.grid_columnconfigure((2, 3, 4), weight=1)
         self.grid_rowconfigure((0, 1, 2, 3), weight=1)
 
-        # self.mainFrame = ctk.CTkFrame(self)
-        # self.mainFrame.grid(row=0, column=0, rowspan=4, sticky="nsew")
-        # self.mainFrame.grid_rowconfigure(4, weight=1)
-
-
         self.tabView = ctk.CTkTabview(self, width=300, corner_radius=20)
         self.tabView.grid(row=0, column=0, rowspan=3, columnspan=4, padx=10, pady=(0, 10), sticky="nsew")
 
         self.tabView.add("Text To Speech")
         self.tabView.add("YT Video Download")
-
-        # self.yttabObject = tts.TextToSpeech(self, self.tabView)
 
         self.ttsFrame = tts.TextToSpeechFrame(self, tabView=self.tabView, header_name="TTS")
         self.ytdFrame = ytd.YTVideoDownloadFrame(self, tabView=self.tabView, header_name="YT Download")
@@ -77,25 +60,6 @@ class App(ctk.CTk):
 
         self.tabView.set("Text To Speech")
 
-        
-        # Color Theme Label
-        # self.colorThemeLabel = ctk.CTkLabel(self, text="Color Theme")
-        # self.colorThemeLabel.grid(row=3, column=2, sticky="w", padx=(20, 0), pady=(0, 0))
-        
-        # # Color Theme Option Menu
-        # self.colorThemeColumnMenu = ctk.CTkOptionMenu(self, values=[str(val)+"%" for val in range(50, 160, 10)], command=self.zoom)
-        # self.colorThemeColumnMenu.grid(row=3, column=2, sticky="w", padx=(100, 0), pady=(10, 10))
-
-        
-        # self.scaling_label = ctk.CTkLabel(self, text="Widget Scaling")
-        # self.scaling_label.grid(row=3, column=2, sticky="e", padx=(0, 310), pady=(0, 0))
-
-        
-        # self.scaling_label = ctk.CTkLabel(self, text="Zoom")
-        # self.scaling_label.grid(row=3, column=2, sticky="w", padx=(0, 0), pady=(0, 0))
-
-        # self.scaling_optionemenu = ctk.CTkOptionMenu(self, values=[str(val)+"%" for val in range(50, 160, 10)], command=self.zoom)
-        # self.scaling_optionemenu.grid(row=3, column=2, sticky="w", padx=(50, 0), pady=(10, 10))
 
     def change_appearance_mode_event(self, newMode):
         ctk.set_appearance_mode(newMode)
@@ -106,17 +70,6 @@ class App(ctk.CTk):
     def zoom(self, zoom):
         newScaling = int(zoom.replace("%", "")) / 100
         ctk.set_widget_scaling(newScaling)
-        # customtkinter.set_spacing_scaling(float_value)  # padding and place positions
-        # customtkinter.set_window_scaling(float_value)  # window geometry dimensions
-
-
-class YT():
-    def __init__(self, tabView):
-        # super().__init__(master=tabView.tab("YT Video Download"))
-        print("YT INIT")
-        self.ytLabel = ctk.CTkLabel(master=tabView.tab("YT Video Download"), text="YouTube Video Downloader and Stats Analyzer")
-        self.ytLabel.grid(row=2, column=1, padx=20, pady=20)
-
 
 if __name__ == "__main__":
     app = App()

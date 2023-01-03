@@ -1,9 +1,7 @@
-1. Text To Speech(PDF2MP3)
-2. Youtube Video Downloader and Stats Analyzer
-3. Schedule Tasks
-4. To-Do
-5. Speech To Text
-6. Voice Recorder
-7. GMail Analyzer
-8. Price Alert
-9. PDF Merger
+1. Text To Speech(PDF2MP3) [DONE]
+2. Youtube Video Downloader and Stats [DONE]
+3. Speech To Text
+4. Voice Recorder
+5. GMail Analyzer
+6. Price Alert
+7. PDF Merger

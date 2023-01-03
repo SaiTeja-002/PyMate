@@ -8,27 +8,6 @@ from tkinter.filedialog import asksaveasfilename
 from tkinter.filedialog import askopenfilename
 
 
-class TextToSpeech:
-    def __init__(self, appRef, tabView):
-        tabName = "Text To Speech"
-        mas = tabView.tab(tabName)
-        # super().__init__(master=tabView.tab("YT Video Download"))
-        print("YT INIT")
-        # self.ytLabel = ctk.CTkLabel(master=tabView.tab("Text To Speech"), text="Takes a Text File and converts into an Audio File", justify=tk.LEFT)
-        # self.ytLabel.grid(row=1, column=0, padx=20, pady=20)
-
-        appRef.main_button_1 = ctk.CTkButton(master=mas, text="b1", fg_color="transparent", border_width=2, text_color=("gray10", "#DCE4EE"))
-        appRef.main_button_1.grid(row=900, column=3, rowspan=3, padx=(20, 20), pady=(20, 20), sticky="nsew")
-
-
-        appRef.main_button_2 = ctk.CTkButton(master=mas, text="b2", fg_color="transparent", border_width=2, text_color=("gray10", "#DCE4EE"))
-        appRef.main_button_2.grid(row=3, column=3, padx=(20, 20), pady=(20, 20), sticky="nsew")
-
-
-        appRef.main_button_3 = ctk.CTkButton(master=mas, text="b3", fg_color="transparent", border_width=2, text_color=("gray10", "#DCE4EE"))
-        appRef.main_button_3.grid(row=3, column=30, columnspan=3, padx=(20, 20), pady=(20, 20), sticky="nsew")
-
-
 class TextToSpeechFrame(ctk.CTkFrame):
     def __init__(self, *args, tabView, header_name="TextToSpeechFrame", **kwargs):
         super().__init__(*args, **kwargs)
@@ -40,14 +19,6 @@ class TextToSpeechFrame(ctk.CTkFrame):
         # Speaker Settings
         self.speaker = pyttsx3.init()
         self.availableVoices = self.speaker.getProperty("voices")
-        
-        # self.grid_columnconfigure(0, weight=1)
-        # self.grid_columnconfigure(1, weight=1)
-        # self.grid_columnconfigure((2, 3), weight=1)
-        # self.grid_rowconfigure((0, 1, 2), weight=1)
-
-        # self.slider_progressbar_frame = ctk.CTkFrame(self, fg_color="transparent")
-        # self.slider_progressbar_frame.grid(row=1, column=1, columnspan=2, padx=(20, 0), pady=(20, 0), sticky="nsew")
 
         # Select Input File Button
         self.selectTextFileButton = ctk.CTkButton(master=mas, text="Select Text File", command=self.selectInputFile)
